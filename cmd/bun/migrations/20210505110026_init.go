@@ -3,8 +3,8 @@ package migrations
 import (
 	"context"
 
-	"github.com/go-bun/bun-starter-kit/bunapp"
-	"github.com/go-bun/bun-starter-kit/example"
+	"github.com/luigiescalante/bun-starter-kit/bunapp"
+	"github.com/luigiescalante/bun-starter-kit/example"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dbfixture"
 )

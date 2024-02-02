@@ -1,4 +1,4 @@
-module github.com/go-bun/bun-starter-kit
+module github.com/luigiescalante/bun-starter-kit
 
 go 1.16
 

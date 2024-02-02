@@ -1,6 +1,6 @@
 # bun starter kit
 
-[![build workflow](https://github.com/go-bun/bun-starter-kit/actions/workflows/build.yml/badge.svg)](https://github.com/go-bun/bun-starter-kit/actions)
+[![build workflow](https://github.com/luigiescalante/bun-starter-kit/actions/workflows/build.yml/badge.svg)](https://github.com/luigiescalante/bun-starter-kit/actions)
 
 Bun starter kit consists of:
 
