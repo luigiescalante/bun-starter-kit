@@ -4,9 +4,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/go-bun/bun-starter-kit/bunapp"
-	"github.com/go-bun/bun-starter-kit/example"
-	"github.com/go-bun/bun-starter-kit/testbed"
+	"github.com/luigiescalante/bun-starter-kit/bunapp"
+	"github.com/luigiescalante/bun-starter-kit/example"
+	"github.com/luigiescalante/bun-starter-kit/testbed"
 	"github.com/stretchr/testify/require"
 	"github.com/uptrace/bun/dbfixture"
 )

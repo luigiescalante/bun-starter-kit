@@ -2,7 +2,7 @@ package bunapp
 
 import (
 	"context"
-	"github.com/go-bun/bun-starter-kit/bunapp/drivers"
+	"github.com/luigiescalante/bun-starter-kit/bunapp/drivers"
 	"math/rand"
 	"os"
 	"os/signal"
