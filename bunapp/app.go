@@ -2,7 +2,7 @@ package bunapp
 
 import (
 	"context"
-	"database/sql"
+	"github.com/go-bun/bun-starter-kit/bunapp/drivers"
 	"math/rand"
 	"os"
 	"os/signal"
@@ -13,12 +13,11 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/uptrace/bun"
-	"github.com/uptrace/bun/dialect/sqlitedialect"
-	"github.com/uptrace/bun/driver/sqliteshim"
-	"github.com/uptrace/bun/extra/bundebug"
 	"github.com/uptrace/bunrouter"
 	"github.com/urfave/cli/v2"
 )
+
+const postgresqlDriver = "postgresql"
 
 type appCtxKey struct{}
 
@@ -124,22 +123,15 @@ func (app *App) APIRouter() *bunrouter.Group {
 
 func (app *App) DB() *bun.DB {
 	app.dbOnce.Do(func() {
-		sqldb, err := sql.Open(sqliteshim.ShimName, app.cfg.DB.DSN)
-		if err != nil {
-			panic(err)
+		switch app.cfg.DB.Driver {
+		case postgresqlDriver:
+			app.db = drivers.PostgresqlDriver(app.cfg.DB.Postgresql)
+		default:
+			app.db = drivers.SqliteDriver(app.cfg.DB.Sqlite)
+			app.OnStop("db.Close", func(ctx context.Context, _ *App) error {
+				return app.db.Close()
+			})
 		}
-
-		db := bun.NewDB(sqldb, sqlitedialect.New())
-		db.AddQueryHook(bundebug.NewQueryHook(
-			bundebug.WithEnabled(false),
-			bundebug.FromEnv(""),
-		))
-
-		app.OnStop("db.Close", func(ctx context.Context, _ *App) error {
-			return db.Close()
-		})
-
-		app.db = db
 	})
 	return app.db
 }
